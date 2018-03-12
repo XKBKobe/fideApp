@@ -1,4 +1,5 @@
 package com.yuanbaopu.fideapp;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +8,11 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.Headers;
 
 
 
@@ -32,31 +34,28 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
+
     }
+
 
     //登录
     public void attemptLogin()  {
-        System.out.println(11111111);
-        Request request = new Request.Builder()
-                .url("https://fidebsz.yuanbaopu.com/api/")
-                .build();
 
-        try {
-            Response response = client.newCall(request).execute();
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-            Headers responseHeaders = response.headers();
-            for (int i = 0; i < responseHeaders.size(); i++) {
-                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-            }
-
-            System.out.println(response.body().string());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        new Thread(networkTask).start();
     }
+
+
+    Runnable networkTask = new Runnable() {
+        KbHttp http = new KbHttp();
+        @Override
+        public void run() {
+//            https://fidebszltest.yuanbaopu.com/api/
+            try{
+                http.run("https://fidebszltest.yuanbaopu.com/api/");
+            }catch (Exception e) {
+                e.printStackTrace();
+            };
+        }
+    };
 }
 

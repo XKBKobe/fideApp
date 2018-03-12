@@ -24,7 +24,12 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".TabMain" />
+        <activity android:name=".MyHomeFragment" />
+        <activity android:name=".MyLoanFragment" />
+        <activity android:name=".MyDataFragment" />
+        <activity android:name=".MyFragment"></activity>
     </application>
 
 </manifest>
