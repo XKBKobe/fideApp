@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,16 +40,14 @@ public class TabMain extends FragmentActivity implements OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_main);
-
         initViews();//初始化控件
         initEvents();//初始化事件
 //        selectTab(0);//默认选中第一个Tab
         initDatas();
-
     }
+
     //初始化控件
     private void initViews() {
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
@@ -124,7 +124,6 @@ public class TabMain extends FragmentActivity implements OnClickListener{
 
     @Override
     public void onClick(View v) {
-        System.out.println(121212);
         //先将四个ImageButton置为灰色
         resetImgs();
 
@@ -147,6 +146,13 @@ public class TabMain extends FragmentActivity implements OnClickListener{
 
 
     private void selectTab(int i) {
+        //获取title
+        TextView tv = (TextView) findViewById(R.id.id_top_title);
+        //获取title array
+        String[] titles =getResources().getStringArray(R.array.tab_title);
+        //设置title
+        tv.setText(titles[i]);
+
         //根据点击的Tab设置对应的ImageButton为绿色
         switch (i) {
             case 0:
@@ -174,6 +180,4 @@ public class TabMain extends FragmentActivity implements OnClickListener{
         mImgMyData.setImageResource(R.mipmap.tab_address_normal);
         mImgMy.setImageResource(R.mipmap.tab_settings_normal);
     }
-
-
 }
