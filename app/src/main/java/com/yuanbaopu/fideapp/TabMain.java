@@ -43,7 +43,33 @@ public class TabMain extends FragmentActivity implements OnClickListener{
         setContentView(R.layout.activity_tab_main);
 
         initViews();//初始化控件
+        initEvents();//初始化事件
+//        selectTab(0);//默认选中第一个Tab
+        initDatas();
 
+    }
+    //初始化控件
+    private void initViews() {
+        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
+
+        mTabHome = (LinearLayout) findViewById(R.id.id_tab_weixin);
+        mTabMyLoan = (LinearLayout) findViewById(R.id.id_tab_frd);
+        mTabMyData = (LinearLayout) findViewById(R.id.id_tab_address);
+        mTabMy = (LinearLayout) findViewById(R.id.id_tab_setting);
+
+        mImgHome = (ImageButton) findViewById(R.id.id_tab_weixin_img);
+        mImgMyLoan = (ImageButton) findViewById(R.id.id_tab_frd_img);
+        mImgMyData = (ImageButton) findViewById(R.id.id_tab_address_img);
+        mImgMy = (ImageButton) findViewById(R.id.id_tab_setting_img);
+
+    }
+
+    private void initEvents() {
+        //设置四个Tab的点击事件
+        mTabHome.setOnClickListener(this);
+        mTabMyLoan.setOnClickListener(this);
+        mTabMyData.setOnClickListener(this);
+        mTabMy.setOnClickListener(this);
     }
 
     private void initDatas() {
@@ -94,34 +120,11 @@ public class TabMain extends FragmentActivity implements OnClickListener{
         });
     }
 
-    private void initEvents() {
-        //设置四个Tab的点击事件
-        mTabHome.setOnClickListener(this);
-        mTabMyLoan.setOnClickListener(this);
-        mTabMyData.setOnClickListener(this);
-        mTabMy.setOnClickListener(this);
-    }
-
-
-    //初始化控件
-    private void initViews() {
-        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-
-        mTabHome = (LinearLayout) findViewById(R.id.id_tab_weixin);
-        mTabMyLoan = (LinearLayout) findViewById(R.id.id_tab_frd);
-        mTabMyData = (LinearLayout) findViewById(R.id.id_tab_address);
-        mTabMy = (LinearLayout) findViewById(R.id.id_tab_setting);
-
-        mImgHome = (ImageButton) findViewById(R.id.id_tab_weixin_img);
-        mImgMyLoan = (ImageButton) findViewById(R.id.id_tab_frd_img);
-        mImgMyData = (ImageButton) findViewById(R.id.id_tab_address_img);
-        mImgMy = (ImageButton) findViewById(R.id.id_tab_setting_img);
-
-    }
 
 
     @Override
     public void onClick(View v) {
+        System.out.println(121212);
         //先将四个ImageButton置为灰色
         resetImgs();
 
