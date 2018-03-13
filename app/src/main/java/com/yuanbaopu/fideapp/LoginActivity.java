@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -13,6 +15,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 
 
@@ -40,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //登录
     public void attemptLogin()  {
-
         new Thread(networkTask).start();
     }
 
@@ -49,9 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         KbHttp http = new KbHttp();
         @Override
         public void run() {
-//            https://fidebszltest.yuanbaopu.com/api/
             try{
-                http.run("https://fidebszltest.yuanbaopu.com/api/");
+                http.Post("http://inet-local-k8s-master.yuanbaopu.com:26030");
             }catch (Exception e) {
                 e.printStackTrace();
             };
